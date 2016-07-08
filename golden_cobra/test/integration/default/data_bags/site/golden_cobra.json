@@ -1,0 +1,6 @@
+{
+  "id" : "golden_cobra",
+  "name" : "golden_cobra",
+  "repository" : "https://github.com/burtlo/golden_cobra.git",
+  "bind" : "127.0.0.1:8000"
+}
