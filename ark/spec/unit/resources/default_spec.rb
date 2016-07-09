@@ -56,7 +56,32 @@ describe 'ark' do
 
   describe 'install_with_make' do
     let(:described_recipe) { 'ark_spec::install_with_make' }
-    it 'generates the expected resources with the expected actions and notifications'
+
+    it 'generates the expected resources with the expected actions and notifications' do
+      expect(chef_run).to install_with_make_ark('test_install_with_make')
+
+      expect(chef_run).to create_directory('/usr/local/test_install_with_make-1.5')
+      resource = chef_run.directory('/usr/local/test_install_with_make-1.5')
+      expect(resource).to notify('execute[unpack /var/chef/cache/test_install_with_make-1.5.tar.gz]').to(:run)
+
+      expect(chef_run).to create_remote_file('/var/chef/cache/test_install_with_make-1.5.tar.gz')
+      resource = chef_run.remote_file('/var/chef/cache/test_install_with_make-1.5.tar.gz')
+      expect(resource).to notify('execute[unpack /var/chef/cache/test_install_with_make-1.5.tar.gz]').to(:run)
+
+      expect(chef_run).not_to run_execute('unpack /var/chef/cache/test_install_with_make-1.5.tar.gz')
+      resource = chef_run.execute('unpack /var/chef/cache/test_install_with_make-1.5.tar.gz')
+      expect(resource).to notify('execute[set owner on /usr/local/test_install_with_make-1.5]').to(:run)
+      expect(resource).to notify('execute[autogen /usr/local/test_install_with_make-1.5]').to(:run)
+      expect(resource).to notify('execute[configure /usr/local/test_install_with_make-1.5]').to(:run)
+      expect(resource).to notify('execute[make /usr/local/test_install_with_make-1.5]').to(:run)
+      expect(resource).to notify('execute[make install /usr/local/test_install_with_make-1.5]').to(:run)
+
+      expect(chef_run).not_to run_execute('set owner on /usr/local/test_install_with_make-1.5')
+      expect(chef_run).not_to run_execute('autogen /usr/local/test_install_with_make-1.5')
+      expect(chef_run).not_to run_execute('configure /usr/local/test_install_with_make-1.5')
+      expect(chef_run).not_to run_execute('make /usr/local/test_install_with_make-1.5')
+      expect(chef_run).not_to run_execute('make install /usr/local/test_install_with_make-1.5')
+    end
   end
 
   describe 'install with binaries' do
