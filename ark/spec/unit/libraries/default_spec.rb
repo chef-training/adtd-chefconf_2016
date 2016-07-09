@@ -34,11 +34,39 @@ describe Opscode::Ark::ProviderHelpers do
 
   describe '#tar_strip_args' do
     context 'when strip components is zero' do
-      it 'generates no additional arguments'
+      let(:subject) do
+        obj = Subject.new
+        allow(obj).to receive(:new_resource).and_return(new_resource)
+        obj
+      end
+
+      let(:new_resource) do
+        obj = double
+        allow(obj).to receive(:strip_components).and_return(0)
+        obj
+      end
+
+      it 'generates no additional arguments' do
+        expect(subject.tar_strip_args).to eq('')
+      end
     end
 
     context 'when strip components is greater than zero' do
-      it 'generates an argument that displays the number of components to strip'
+      let(:subject) do
+        obj = Subject.new
+        allow(obj).to receive(:new_resource).and_return(new_resource)
+        obj
+      end
+
+      let(:new_resource) do
+        obj = double
+        allow(obj).to receive(:strip_components).and_return(1)
+        obj
+      end
+
+      it 'generates an additional argument' do
+        expect(subject.tar_strip_args).to eq(' --strip-components=1')
+      end
     end
   end
 end
