@@ -9,7 +9,7 @@ execute 'yum update -y'
 package 'sqlite-devel'
 
 # TODO: install python 3.4.4
-# TODO: install python packages: djano, uwsgi, and gunicorn
+# TODO: install python packages: django, uwsgi, and gunicorn
 
 directory '/sites'
 
