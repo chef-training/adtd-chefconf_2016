@@ -10,7 +10,13 @@ describe 'golden_cobra::default' do
   context 'When all attributes are default, on an unspecified platform' do
     let(:chef_run) do
       runner = ChefSpec::ServerRunner.new do |node,server|
-        # TODO stub the site data on the server
+        server.create_data_bag('site',{
+            'golden_cobra' => {
+              'name' => 'golden_cobra',
+              'bind' => '127.0.0.1:8000',
+              'repository' => 'https://github.com/burtlo/golden_cobra.git'
+            }
+        })
       end
       runner.converge(described_recipe)
     end
