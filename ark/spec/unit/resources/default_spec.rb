@@ -55,12 +55,12 @@ describe 'ark' do
   end
 
   describe 'install_with_make' do
-    let(:example_recipe) { 'ark_spec::install_with_make' }
+    let(:described_recipe) { 'ark_spec::install_with_make' }
     it 'generates the expected resources with the expected actions and notifications'
   end
 
   describe 'install with binaries' do
-    let(:example_recipe) { 'ark_spec::install_with_binaries' }
+    let(:described_recipe) { 'ark_spec::install_with_binaries' }
     it 'generates the expected resources with the expected actions and notifications'
   end
 
@@ -69,12 +69,12 @@ describe 'ark' do
 
   # describe 'install with append_env_path' do
   #   context 'binary is not already in the environment path' do
-  #     let(:example_recipe) { 'ark_spec::install_with_append_env_path' }
+  #     let(:described_recipe) { 'ark_spec::install_with_append_env_path' }
   #     it 'generates the expected resources with the expected actions and notifications'
   #   end
   #
   #   context 'binary is already in the environment path' do
-  #     let(:example_recipe) { 'ark_spec::install_with_append_env_path' }
+  #     let(:described_recipe) { 'ark_spec::install_with_append_env_path' }
   #
   #     # TODO: Using the ENV is terrible -- attempts to replace it with a helper
   #     #   method did not work or a class with a method. Explore different ways
@@ -94,7 +94,7 @@ describe 'ark' do
   # end
   #
   # describe 'install on windows' do
-  #   let(:example_recipe) { 'ark_spec::install_windows' }
+  #   let(:described_recipe) { 'ark_spec::install_windows' }
   #
   #   let(:node_attributes) do
   #     { platform: 'windows', version: '2008R2' }
@@ -104,42 +104,42 @@ describe 'ark' do
   # end
   #
   # describe 'configure' do
-  #   let(:example_recipe) { 'ark_spec::configure' }
+  #   let(:described_recipe) { 'ark_spec::configure' }
   #   it 'generates the expected resources with the expected actions and notifications'
   # end
   #
   # describe 'put' do
-  #   let(:example_recipe) { 'ark_spec::put' }
+  #   let(:described_recipe) { 'ark_spec::put' }
   #   it 'generates the expected resources with the expected actions and notifications'
   # end
   #
   # describe 'dump' do
-  #   let(:example_recipe) { 'ark_spec::dump' }
+  #   let(:described_recipe) { 'ark_spec::dump' }
   #   it 'generates the expected resources with the expected actions and notifications'
   # end
   #
   # describe 'unzip' do
-  #   let(:example_recipe) { 'ark_spec::unzip' }
+  #   let(:described_recipe) { 'ark_spec::unzip' }
   #   it 'generates the expected resources with the expected actions and notifications'
   # end
   #
   # describe 'cherry_pick' do
-  #   let(:example_recipe) { 'ark_spec::cherry_pick' }
+  #   let(:described_recipe) { 'ark_spec::cherry_pick' }
   #   it 'generates the expected resources with the expected actions and notifications'
   # end
   #
   # describe 'setup_py_build' do
-  #   let(:example_recipe) { 'ark_spec::setup_py_build' }
+  #   let(:described_recipe) { 'ark_spec::setup_py_build' }
   #   it 'generates the expected resources with the expected actions and notifications'
   # end
   #
   # describe 'setup_py_install' do
-  #   let(:example_recipe) { 'ark_spec::setup_py_install' }
+  #   let(:described_recipe) { 'ark_spec::setup_py_install' }
   #   it 'generates the expected resources with the expected actions and notifications'
   # end
   #
   # describe 'setup_py' do
-  #   let(:example_recipe) { 'ark_spec::setup_py' }
+  #   let(:described_recipe) { 'ark_spec::setup_py' }
   #   it 'generates the expected resources with the expected actions and notifications'
   # end
 
