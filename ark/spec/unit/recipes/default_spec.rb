@@ -1,29 +1,7 @@
 require 'spec_helper'
 
-describe 'ark::default' do
-  let(:chef_run) do
-    runner = ChefSpec::SoloRunner.new(node_attributes)
-    runner.converge(described_recipe)
-  end
-
-  let(:node_attributes) do
-    {}
-  end
-
-  shared_examples 'installs packages' do
-    it 'installs necessary packages' do
-      installed_packages.each { |name| expect(chef_run).to install_package(name) }
-    end
-  end
-
-  shared_examples 'does not install packages' do
-    it 'does not install packages' do
-      packages_not_installed.each { |name| expect(chef_run).not_to install_package(name) }
-    end
-  end
-
+describe_recipe 'ark::default' do
   context 'when no attributes are specified, on an unspecified platform' do
-
     let(:installed_packages) do
       %w[ libtool autoconf unzip rsync make gcc autogen ]
     end
@@ -37,28 +15,23 @@ describe 'ark::default' do
     it_behaves_like 'does not install packages'
 
     it "apache mirror" do
-      attribute = chef_run.node['ark']['apache_mirror']
-      expect(attribute).to eq "http://apache.mirrors.tds.net"
+      expect(attribute('apache_mirror')).to eq "http://apache.mirrors.tds.net"
     end
 
     it "prefix root" do
-      attribute = chef_run.node['ark']['prefix_root']
-      expect(attribute).to eq "/usr/local"
+      expect(attribute('prefix_root')).to eq "/usr/local"
     end
 
     it "prefix bin" do
-      attribute = chef_run.node['ark']['prefix_bin']
-      expect(attribute).to eq "/usr/local/bin"
+      expect(attribute('prefix_bin')).to eq "/usr/local/bin"
     end
 
     it "prefix home" do
-      attribute = chef_run.node['ark']['prefix_home']
-      expect(attribute).to eq "/usr/local"
+      expect(attribute('prefix_home')).to eq "/usr/local"
     end
 
     it "tar binary" do
-      attribute = chef_run.node['ark']['tar']
-      expect(attribute).to eq "/bin/tar"
+      expect(attribute('tar')).to eq "/bin/tar"
     end
   end
 
@@ -98,8 +71,7 @@ describe 'ark::default' do
     it_behaves_like 'installs packages'
 
     it "tar binary" do
-      attribute = chef_run.node['ark']['tar']
-      expect(attribute).to eq '/usr/bin/tar'
+      expect(attribute('tar')).to eq '/usr/bin/tar'
     end
   end
 
@@ -115,8 +87,7 @@ describe 'ark::default' do
     it_behaves_like 'does not install packages'
 
     it "tar binary" do
-      attribute = chef_run.node['ark']['tar']
-      expect(attribute).to eq '/usr/bin/tar'
+      expect(attribute('tar')).to eq '/usr/bin/tar'
     end
   end
 
@@ -144,8 +115,7 @@ describe 'ark::default' do
     it_behaves_like 'installs packages'
 
     it "tar binary" do
-      attribute = chef_run.node['ark']['tar']
-      expect(attribute).to eq '/bin/gtar'
+      expect(attribute('tar')).to eq '/bin/gtar'
     end
   end
 
@@ -161,8 +131,7 @@ describe 'ark::default' do
     it_behaves_like 'does not install packages'
 
     it "tar binary" do
-      attribute = chef_run.node['ark']['tar']
-      expect(attribute).to eq '"\7-zip\7z.exe"'
+      expect(attribute('tar')).to eq '"\7-zip\7z.exe"'
     end
   end
 end
